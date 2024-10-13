@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  box-shadow: 0px 2px 0px 0px rgba(46, 47, 66, 0.08),
+    0px 1px 0px 0px rgba(46, 47, 66, 0.16),
+    0px 2px 0px 0px rgba(46, 47, 66, 0.08);
+}
+
+.logo {
+  text-transform: uppercase;
+}
+
+.accent {
+  color: orangered;
+  font-style: italic;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+}
+
+.link {
+  padding: 16px 0;
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  font-size: 20px;
+  transition: text-decoration 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.active {
+  color: orangered;
+}
