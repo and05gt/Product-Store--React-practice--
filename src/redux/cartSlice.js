@@ -14,7 +14,15 @@ const slice = createSlice({
         state.items = action.payload;
       })
       .addCase(addToCart.fulfilled, (state, action) => {
-        state.items.push(action.payload);
+        const existingProduct = state.items.find(
+          (item) => item.title === action.payload.title
+        );
+        if (existingProduct) {
+          existingProduct.count = action.payload.count;
+        } else {
+          state.items.push(action.payload);
+        }
+        // поки що не працює додавання того ж самого продукту в одну строку
       })
       .addCase(removeFromCart.fulfilled, (state, action) => {
         state.items = state.items.filter(

@@ -3,17 +3,11 @@ import { addToCart } from "../../redux/cartOps";
 import { Link } from "react-router-dom";
 
 const Product = ({ product }) => {
-  // const { productId } = useParams();
   const dispatch = useDispatch();
 
-  // const handleAddToCart = (product) => {
-  //   if (!productId) return;
-
-  //   if (productId !== product.id) {
-  //     dispatch(addToCart(product));
-  //   }
-  //   dispatch(increaseProductCount(product));
-  // };
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+  };
 
   return (
     <li>
@@ -22,7 +16,7 @@ const Product = ({ product }) => {
         <img src={product.thumbnail} alt={product.title} />
       </Link>
       <p>{product.price}</p>
-      <button onClick={() => dispatch(addToCart(product))}>Add to cart</button>
+      <button onClick={handleAddToCart}>Add to cart</button>
     </li>
   );
 };

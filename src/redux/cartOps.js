@@ -16,11 +16,24 @@ export const addToCart = createAsyncThunk(
   "addToCart",
   async (product, thunkAPI) => {
     try {
-      const { data } = await axios.post(
-        "https://6706ba16a0e04071d2280c93.mockapi.io/products",
-        { ...product, count: 1 }
+      const state = thunkAPI.getState();
+      const existingProduct = state.cart.items.find(
+        (item) => item.title === product.title
       );
-      return data;
+
+      if (existingProduct) {
+        await axios.put(
+          `https://6706ba16a0e04071d2280c93.mockapi.io/products/${product.id}`,
+          { ...existingProduct, count: existingProduct.count + 1 }
+        );
+        thunkAPI.dispatch(fetchCart());
+      } else {
+        const { data } = await axios.post(
+          "https://6706ba16a0e04071d2280c93.mockapi.io/products",
+          { ...product, count: 1 }
+        );
+        return data;
+      }
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
