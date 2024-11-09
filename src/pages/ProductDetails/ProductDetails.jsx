@@ -24,8 +24,10 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div>
-        <img src={product.images} alt={product.title} width={480} />
+      <div className="flex bg-white">
+        <div className="bg-orange rounded-lg shadow-md lg:shadow-lg">
+          <img src={product.images} alt={product.title} width={480} />
+        </div>
         <p>{product.title}</p>
         <p>Category: {product.category}</p>
         <p>Price: {product.price}$</p>
