@@ -1,6 +1,8 @@
 import { Suspense, useEffect, useState } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
 import { fetchProductById } from "../../services/api";
+import { motion } from "framer-motion";
+import { slideInFromRight } from "../../motion/motion";
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -24,21 +26,37 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div className="flex bg-white">
-        <div className="bg-orange rounded-lg shadow-md lg:shadow-lg">
+      <div className="flex gap-16 p-8 bg-white">
+        <div className="flex items-center justify-center bg-orange rounded-lg shadow-md lg:shadow-lg">
           <img src={product.images} alt={product.title} width={480} />
         </div>
-        <p>{product.title}</p>
-        <p>Category: {product.category}</p>
-        <p>Price: {product.price}$</p>
-        <p>Rating: {product.rating}</p>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={slideInFromRight()}
+          className="flex flex-col justify-start gap-4"
+        >
+          <p className="text-3xl">{product.title}</p>
+          <p className="text-xl">Category: {product.category}</p>
+          <p className="text-xl">Price: {product.price}$</p>
+          <p className="text-xl">
+            Rating:{" "}
+            {product.rating > 3 ? (
+              <span className="text-green-600">{product.rating}</span>
+            ) : (
+              <span className="text-red-600">{product.rating}</span>
+            )}
+          </p>
+          <div>
+            <Link className="text-lg underline text-orange" to="reviews">
+              Reviews
+            </Link>
+          </div>
+          <Suspense fallback={<h2>Loading...</h2>}>
+            <Outlet />
+          </Suspense>
+        </motion.div>
       </div>
-      <div>
-        <Link to="reviews">Reviews</Link>
-      </div>
-      <Suspense fallback={<h2>Loading...</h2>}>
-        <Outlet />
-      </Suspense>
     </>
   );
 };

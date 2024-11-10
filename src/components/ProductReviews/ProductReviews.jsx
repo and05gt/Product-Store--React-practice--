@@ -25,11 +25,11 @@ const ProductReviews = () => {
 
   return (
     <div>
-      <ul>
+      <ul className="flex flex-col gap-2">
         {reviews.map((review) => (
-          <li key={nanoid()}>
-            <p>{review.reviewerName}</p>
-            <p>&quot;{review.comment}&quot;</p>
+          <li key={nanoid()} className="flex gap-4">
+            <p className="">{review.reviewerName}</p> -
+            <p className="">&quot;{review.comment}&quot;</p>
           </li>
         ))}
       </ul>

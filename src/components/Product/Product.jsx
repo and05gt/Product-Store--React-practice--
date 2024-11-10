@@ -41,7 +41,7 @@ const Product = ({ product }) => {
     //   </div>
     // </li>
 
-    <div className="group relative">
+    <div className="group relative shadow-md rounded-md">
       <motion.div
         initial="hidden"
         animate="visible"
@@ -60,7 +60,7 @@ const Product = ({ product }) => {
         initial="hidden"
         animate="visible"
         variants={slideInFromLeft()}
-        className="mt-4 flex justify-between"
+        className="flex justify-between p-4"
       >
         <div>
           <h3 className="text-sm text-gray">
@@ -74,7 +74,7 @@ const Product = ({ product }) => {
 
         <button
           type="submit"
-          className="absolute right-0 bottom-0 inline-flex items-center justify-center rounded-md border-0 bg-orange px-3 py-1.5 text-sm leading-6 font-medium text-white hover:bg-beige hover:text-orange focus:outline-none focus:ring-2 focus:ring-beige"
+          className="absolute right-4 bottom-4 inline-flex items-center justify-center rounded-md border-0 bg-orange px-3 py-1.5 text-sm leading-6 font-medium text-white hover:bg-beige hover:text-orange focus:outline-none focus:ring-2 focus:ring-beige"
           onClick={handleAddToCart}
         >
           Add to cart
